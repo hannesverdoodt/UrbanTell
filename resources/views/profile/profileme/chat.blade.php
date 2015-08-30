@@ -1,0 +1,1 @@
+ <div id="message" class="col s12">Messages</div>

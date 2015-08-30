@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Jonas/Documents/Xampp/htdocs/UrbenTell/app/User.php</file>
+            <file>file:/C:/Users/Jonas/Documents/Xampp/htdocs/UrbenTell/resources/views/story/create.blade.php</file>
+            <file>file:/C:/Users/Jonas/Documents/Xampp/htdocs/UrbenTell/app/Http/Controllers/ChapterController.php</file>
+            <file>file:/C:/Users/Jonas/Documents/Xampp/htdocs/UrbenTell/database/migrations/2015_06_06_123439_create_stories_table.php</file>
+            <file>file:/C:/Users/Jonas/Documents/Xampp/htdocs/UrbenTell/database/migrations/2015_08_23_091307_create_chapterpictures.php</file>
+            <file>file:/C:/Users/Jonas/Documents/Xampp/htdocs/UrbenTell/app/Http/Controllers/StoryController.php</file>
+            <file>file:/C:/Users/Jonas/Documents/Xampp/htdocs/UrbenTell/database/migrations/2015_08_23_084049_create_chapter.php</file>
+            <file>file:/C:/Users/Jonas/Documents/Xampp/htdocs/UrbenTell/resources/views/parts/create.blade.php</file>
+            <file>file:/C:/Users/Jonas/Documents/Xampp/htdocs/UrbenTell/resources/views/story/read.blade.php</file>
+            <file>file:/C:/Users/Jonas/Documents/Xampp/htdocs/UrbenTell/app/Story.php</file>
+            <file>file:/C:/Users/Jonas/Documents/Xampp/htdocs/UrbenTell/resources/views/story/edit.blade.php</file>
+            <file>file:/C:/Users/Jonas/Documents/Xampp/htdocs/UrbenTell/app/Part.php</file>
+            <file>file:/C:/Users/Jonas/Documents/Xampp/htdocs/UrbenTell/app/Http/Controllers/PartController.php</file>
+            <file>file:/C:/Users/Jonas/Documents/Xampp/htdocs/UrbenTell/app/chapter.php</file>
+            <file>file:/C:/Users/Jonas/Documents/Xampp/htdocs/UrbenTell/resources/views/chapter/create.blade.php</file>
+            <file>file:/C:/Users/Jonas/Documents/Xampp/htdocs/UrbenTell/app/Http/routes.php</file>
+        </group>
+    </open-files>
+</project-private>

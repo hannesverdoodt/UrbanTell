@@ -1,0 +1,25 @@
+{
+  "name": "UrbenTell",
+  "version": "0.0.2",
+  "description": "Compunity for urbex ppl",
+  "main": "index.php",
+  "keywords": [
+    "Urban",
+    "exploration"
+  ],
+  "authors": [
+    "Hannes Verdoodt"
+  ],
+  "license": "Will come",
+  "homepage": "urbantell.co",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0"
+  }
+}

@@ -18,11 +18,13 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
-
-Route::post('friend', 'FriendController@store');
+Route::resource('friend', 'FriendController');
 Route::controller('friend', 'FriendController');
 
-Route::post('expedition', 'ExpeditionController@store');
+Route::resource('expedition', 'ExpeditionController');
+Route::resource('expedition.friend', 'AddFriendExController');
+Route::controller('expedition', 'ExpeditionController');
+
 
 Route::resource('story', 'StoryController');
 //Route::resource('story.part', 'PartController');
@@ -30,7 +32,7 @@ Route::resource('story.chapter','ChapterController');
 
 Route::resource('profile', 'ProfileController');
 
-
+Route::post('search', 'SearchController@search');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

@@ -18,13 +18,27 @@
 						</div>
 					@endif
 
-					<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
+					<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}" enctype="multipart/form-data">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+						
+						<div class="form-group">
+							<label class="col-md-4 control-label">Picture</label>
+							<div class="col-md-6">
+								<input type="file" class="form-control" name="profilepic" value="{{ old('profile photo') }}">
+							</div>
+						</div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Name</label>
+							<label class="col-md-4 control-label">Firstname</label>
 							<div class="col-md-6">
-								<input type="text" class="form-control" name="name" value="{{ old('name') }}">
+								<input type="text" class="form-control" name="firstname" value="{{ old('firstname') }}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">Lastname</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="lastname" value="{{ old('lastname') }}">
 							</div>
 						</div>
 

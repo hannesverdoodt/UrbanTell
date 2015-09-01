@@ -20,7 +20,8 @@ class CreateExpfriendsTable extends Migration {
 			$table->integer('user_id')->unsigned()->default(0);
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 			$table->integer('creator_id')->unsigned()->default(0);
-			$table->foreign('creator_id')->references('id')->on('users')->onDelete('cascade');			
+			$table->foreign('creator_id')->references('id')->on('users')->onDelete('cascade');	
+			$table->integer('state')->default(0);		
 			$table->timestamps();
 		});
 	}

@@ -10,6 +10,16 @@ use Illuminate\Http\Request;
 
 class FriendController extends Controller {
 
+	/**
+	 * Create a new controller instance.
+	 *
+	 * @return void
+	 */
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
+
 	public function getAddFriend($id)
     {
   	$authU = \Auth::user()->id;
@@ -70,9 +80,13 @@ class FriendController extends Controller {
 		$friend_mail = $input['email'];
 		$friend_id = user::where('email', $friend_mail)->pluck('id');
 		$friend_list = friend::where('user_id', $authU)->where('friend_id', $friend_id)->pluck('id');
-		
+		$already_inv = friend::where('user_id', $friend_id)->where('friend_id', $authU)->pluck('id');
+
 		if ($authU == $friend_id) {
 			return "u cant invite yourself to friends";
+		}
+		elseif (!empty($already_inv)) {
+			return "friend already send you request, accept it";
 		}
 		elseif (!empty($friend_list)) {
 			return "friend is already your friend";
@@ -90,7 +104,7 @@ class FriendController extends Controller {
 
 		$friend->save();
 
-		return redirect('profile/' . $authU);
+		return redirect('home');
 		}
 	}
 

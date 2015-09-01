@@ -2,6 +2,8 @@
 
 use App\Expfriend;
 use App\Expedition;
+use App\User;
+use App\Friend;
 use App\Http\Requests;
 use App\Http\Requests\CreateExpadition;
 use App\Http\Controllers\Controller;
@@ -11,10 +13,41 @@ use Illuminate\Http\Request;
 class ExpeditionController extends Controller {
 
 	/**
+	 * Create a new controller instance.
+	 *
+	 * @return void
+	 */
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
+	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
+	public function getRemoveInv($id)
+	{
+				$authU = \Auth::user()->id;
+
+  		$expinv = Expfriend::where('expedition_id', $id)
+  					->where('user_id', $authU)->delete();	
+    
+    	return redirect('home');
+	}
+	public function getAcceptInv($id)
+	{
+		$authU = \Auth::user()->id;
+
+  		$expinv = Expfriend::where('expedition_id', $id)
+  					->where('user_id', $authU)->first();
+		$expinv->state = 1;
+		$expinv->save();	
+    
+    	return redirect('home');	
+	}
+
+
 	public function index()
 	{
 
@@ -27,7 +60,7 @@ class ExpeditionController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('expeditions.create');
 	}
 
 	/**
@@ -55,24 +88,13 @@ class ExpeditionController extends Controller {
 		$expfriends->expedition_id = $expedition->id;
 		$expfriends->user_id = $creator;
 		$expfriends->creator_id = $creator;
+		$expfriends->state = 1;
 
 		$expfriends->save();
 
-		return redirect('story/'. $story->id . '/edit');
+		return redirect('expedition/'. $expedition->id);
 
 	}
-	public function getAddfriend($id, CreateExpfriend $request)
-	{
-		// add user_id & expadition id
-		// zien of friend wel in de vrienden lijst zit van creator expedition
-if (condition) {
-	# code...
-} else {
-	# code...
-}
-
-		}
-
 	/**
 	 * Display the specified resource.
 	 *
@@ -81,7 +103,36 @@ if (condition) {
 	 */
 	public function show($id)
 	{
-		//
+
+		$expedition = expedition::where('id', $id)->first();
+		$thisExpedition = $id;
+		// creator
+		$creator = $expedition->user_id;
+		$creatorinfo = user::where('id', $creator)->first();
+
+		//friends
+
+		//friends inv
+		$friendsinv = expfriend::where('expedition_id', $id)->where('state', 1)->lists('user_id');
+		$friendsinv = user::where('id',$friendsinv)->get();
+		$listinv = expfriend::where('expedition_id', $id)->where('state', 1)->lists('user_id');
+		$listinvque = expfriend::where('expedition_id', $id)->where('state', 0)->lists('user_id');
+
+		//friends to inv
+		$friendlist = friend::whereNotIn('friend_id', $listinv)->whereNotIn('friend_id', $listinvque)->where('user_id', $creator)->where('state', 1)->lists('friend_id');
+		$friendlist = user::where('id', $friendlist)->get();
+
+		//friend in que
+		$friendque = expfriend::where('expedition_id', $id)->where('state', 0)->lists('user_id');
+		$friendque = user::where('id',$friendque)->get();
+
+		return view('expeditions.show', compact('thisExpedition',
+												'expedition',
+												'creatorinfo',
+												'friendsinv',
+												'friendlist',
+												'friendque'	));
+
 	}
 
 	/**

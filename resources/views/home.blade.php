@@ -1,32 +1,50 @@
 @extends('app')
 
 @section('content')
-<div class="container">
-@if ( !$stories->count() )
-        <p>You have no stories</p>
-@else
 
-    @foreach( $stories as $story )
-		<div class="card large">
-		        <div class="card-image waves-effect waves-block waves-light">
-		          <img class="activator" src="{{ asset('/images/story/') }}/{{ $story->image }}" alt="{{ $story->title}}">
-		        </div>
-		        <div class="card-content">
-		          <span class="card-title activator grey-text text-darken-4">{{ $story->title }} <i class="mdi-navigation-more-vert right"></i></span>
-		          <p><a href="{{ route('story.show', $story->id) }}">Read exploration</a></p>
-		        </div>
-		        <div class="card-reveal">
-		          <span class="card-title grey-text text-darken-4">{{ $story->title }}  <i class="mdi-navigation-close right"></i></span>
-		          <p>{{ $story->description }}</p>
-		        </div>
-		</div>
-    @endforeach
+@if ($isthisme == "yes")
+<div class="container">
+	<div class="row">
+	    <div class="col s6">
+	      <ul class="tabs">
+	        <li class="tab col s3"><a class="active blue-grey-text" href="#stories">Stories</a></li>
+	        <li class="tab col s3"><a class="blue-grey-text" href="#friends">friends</a></li>
+	        <li class="tab col s3"><a class="blue-grey-text" href="#explore">expeditions</a></li>
+	        <li class="tab col s3"><a class="blue-grey-text" href="#message">chat</a></li>
+	      </ul>
+	    </div>
+	 </div>
+			
+		@include('profile/profileme/stories')
+		@include('profile/profileme/friends')
+		@include('profile/profileme/explore')
+		@include('profile/profileme/chat')
+		
+</div>
+
+
+@elseif ($isthisme == "no")  
+
+		@include('profile/profilevisit/header')
+
+<div class="container">
+
+	<div class="row">
+	    <div class="col s12">
+	      <ul class="tabs">
+	        <li class="tab col s3"><a class="active blue-grey-text" href="#stories">Stories</a></li>
+	        <li class="tab col s3"><a class="blue-grey-text" href="#friends">friends</a></li>
+	        <li class="tab col s3"><a class="blue-grey-text" href="#explore">expeditions</a></li>
+	      </ul>
+	    </div>
+	 </div>
+	
+	@include('profile/profilevisit/stories')
+	@include('profile/profilevisit/friends')
+	@include('profile/profilevisit/explore')
+
+</div>
+
 @endif
-<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a class="btn-floating btn-large light-blue" href="{{ route('story.create') }}">
-      <i class="large mdi-editor-mode-edit"></i>
-    </a>
-</div>
-				
-</div>
+
 @endsection

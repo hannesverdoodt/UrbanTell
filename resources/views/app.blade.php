@@ -9,10 +9,11 @@
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 
 	<link href="{{ asset('/css/materialize.css') }}" rel="stylesheet">
-
+	<link href="{{ asset('/css/compressed/themes/default.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/compressed/themes/default.date.css') }}" rel="stylesheet">
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
-
+	<link rel="stylesheet" type="text/css" href="{{ asset('/css/font-awesome.min.css') }}">
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -35,7 +36,7 @@
 						<li><a href="{{ url('/auth/login') }}">Login</a></li>
 						<li><a href="{{ url('/auth/register') }}">Register</a></li>
 					@else
-						<li><a href="{{ url('/profile') }}/{{ Auth::user()->id }}">{{ Auth::user()->name }}</a></li>
+						<li><a href="{{ url('home') }}">{{ Auth::user()->firstname}} {{ Auth::user()->lastname}}</a></li>
 						<li><a href="{{ url('/auth/logout') }}">Logout</a></li>
 					@endif
 				</ul>
@@ -45,8 +46,22 @@
 	@yield('content')
 
 	<!-- Scripts -->
+
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	<script src="{{ asset('/js/materialize.js') }}"></script>
+	<script src="{{ asset('/js/search.js') }}"></script>
+	<script src="{{ asset('/css/compressed/picker.js') }}"></script>
+    <script src="{{ asset('/css/compressed/picker.date.js') }}"></script>
+    <script>
+	  $(function() {
+	    // Enable Pickadate on an input field
+	    $('#date').pickadate({
+	    	formatSubmit : 'yyyy-mm-dd 00:00:00',
+	    	hiddenName : true
+	    	});
+	    
+	  });   
+	</script>
 </body>
 </html>

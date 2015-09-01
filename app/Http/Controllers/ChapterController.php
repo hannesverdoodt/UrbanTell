@@ -9,11 +9,15 @@ use Illuminate\Http\Request;
 
 class ChapterController extends Controller {
     
-        public function _contstruct ()
-        {
-            $this->middleware('auth');
-        }
-
+    /**
+	 * Create a new controller instance.
+	 *
+	 * @return void
+	 */
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
 	/**
 	 * Display a listing of the resource.
 	 *

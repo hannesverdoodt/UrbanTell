@@ -1,5 +1,6 @@
 <?php namespace App\Services;
 
+use Input;
 use App\User;
 use Validator;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
@@ -19,7 +20,7 @@ class Registrar implements RegistrarContract {
 			'lastname' => 'required|max:255',
 			'email' => 'required|email|max:255|unique:users',
 			'password' => 'required|confirmed|min:6',
-			'profilepic' => 'required|mimes:png,jpeg'
+			'profilepic' => 'required'
 		]);
 	}
 
@@ -31,12 +32,22 @@ class Registrar implements RegistrarContract {
 	 */
 	public function create(array $data)
 	{
+
+		$destinatonPath = '';
+    	$filename = '';
+
+	    $file = Input::file('profilepic');
+	    $destinationPath = public_path().'/images/profile';
+	    $filename = uniqid().'_'.$file->getClientOriginalName();
+	    $uploadSuccess = $file->move($destinationPath, $filename);
+
 		return User::create([
+		   
 			'firstname' => $data['firstname'],
 			'lastname' => $data['lastname'],
 			'email' => $data['email'],
 			'password' => bcrypt($data['password']),
-			'profilepic' => $data['profilepic'],
+			'profilepic' => $filename,
 		]);
 	}
 
